@@ -7,9 +7,15 @@ Look how easy it is to use:
 
 Installation
 ------------
-Use pip to install **nmtvis**:::
+   Use pip to install **nmtvis**::
 
-   pip install nmtvis
+      pip install nmtvis
+
+Requirements
+------------
+   Python3
+
+   Numpy
 
 Features
 --------
@@ -22,10 +28,10 @@ Links
 ----------
 
 - Source Code: https://github.com/player-eric/NMT-Visualizer
-- Documentation: 
+- Documentation: https://nmtvis.readthedocs.io/en/latest
 
 License
--------
+----------
 
 The project is licensed under the MIT license.
 
@@ -35,4 +41,34 @@ Support
 If you are having issues, please let me know.
 Contact me at digimonyan@gmail.com
 
+**Attention Visualization**
+====================================
+**nmtvis.AttentionVisualizer** provides two interfaces to 
+visualize the attention weights in attention-based NMT 
+models. 
 
+One interface, *visualize_attention()*, aims at visualizing attention between target 
+sentence and source sentence in translation. And the other interface *visualize_transformer_attention()* 
+is targeted at visualizing attention weights in Transformer-based models.
+
+By processing the attention weights into specified format and calling the interfaces, a temporary web server rendering the visualization 
+result will be lauched.
+
+Visualization Views
+----------------------
+Optionally, the attention weights can be visualized in three views:
+heatmap view, alignment graph view, and highlighted-words view.
+
+   In the alignment view, the source sentence and target sentence are displayed parallelly. Pairs of words from the sentences are connected by lines, with stroke width proportional to the corresponding attention weight.
+   
+   .. figure:: alignment_view.gif
+      :scale: 100 %
+      :alt: map to buried treasure
+
+      *Alignment View*
+
+
+
+nmtvis.AttentionVisualizer.visualize_attention(*data:List[dict]*)
+-------------------------------------------------------------------
+Visualizing 
