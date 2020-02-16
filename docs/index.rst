@@ -13,9 +13,9 @@ Installation
 
 Requirements
 ------------
-   Python3
+- Python3
 
-   Numpy
+- Numpy
 
 Features
 --------
@@ -69,6 +69,12 @@ Optionally, the attention weights can be visualized in three views:
    In the heatmap view, attention weights are ploted as a partitioned matrix. Blocks within the matrix are of different color, indicating the extent of atten- tion.
 
    .. figure:: heatmap_view.png
+      
+      *Heatmap View*
+   
+   In the highlighted-words view, a word is selected when the mouse pointer hov- ers over it. Then all the words(including the se- lected one) are highlighted according to the atten- tion strength.
+
+   .. figure:: highlight_view.gif
       
       *Heatmap View*
 
