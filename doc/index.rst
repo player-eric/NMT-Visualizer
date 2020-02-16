@@ -57,16 +57,20 @@ result will be lauched.
 Visualization Views
 ----------------------
 Optionally, the attention weights can be visualized in three views:
-heatmap view, alignment graph view, and highlighted-words view.
+ alignment graph view, heatmap view, and highlighted-words view.
 
    In the alignment view, the source sentence and target sentence are displayed parallelly. Pairs of words from the sentences are connected by lines, with stroke width proportional to the corresponding attention weight.
    
    .. figure:: alignment_view.gif
       :scale: 100 %
-      :alt: map to buried treasure
 
       *Alignment View*
 
+   In the heatmap view, attention weights are ploted as a partitioned matrix. Blocks within the matrix are of different color, indicating the extent of atten- tion.
+
+   .. figure:: heatmap_view.png
+      
+      *Heatmap View*
 
 
 nmtvis.AttentionVisualizer.visualize_attention(*data:List[dict]*)
