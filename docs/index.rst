@@ -54,7 +54,7 @@ is targeted at visualizing attention weights in Transformer-based models.
 By processing the attention weights into specified format and calling the corresponding method, a temporary web server rendering the visualization 
 result will be lauched.
 
-Detailed introduction to this module and its potentioal usage can be view at: https://detailedintro.com
+Detailed introduction to this module and its potentioal usage can be view at: https://player-eric.github.io/2020/02/20/nmtvis-attention/
 
 For example code and data, please refer to: https://github.com/player-eric/NMT-Visualizer/tree/master/example
 
