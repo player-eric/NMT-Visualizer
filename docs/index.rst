@@ -16,12 +16,14 @@ Requirements
 - Python3
 
 - Numpy
+  
+- Sklearn
 
 Features
 --------
 
-- Visualize attention weights in attention-based NMT models
-- Other features to be developed
+- Visualize attention weights in attention-based NMT models.
+- Visualize high-dimensional word embeddings in 3D or 2D ways.
 
 
 Links
@@ -29,6 +31,7 @@ Links
 
 - Source Code: https://github.com/player-eric/NMT-Visualizer
 - Documentation: https://nmtvis.readthedocs.io/en/latest
+- For example code and data, please refer to: https://github.com/player-eric/NMT-Visualizer/tree/master/example
 
 License
 ----------
@@ -54,9 +57,13 @@ is targeted at visualizing attention weights in Transformer-based models.
 By processing the attention weights into specified format and calling the corresponding method, a temporary web server rendering the visualization 
 result will be lauched.
 
+See this demo with example data: https://player-eric.github.io/attention_demo/
+
 Detailed introduction to this module and its potentioal usage can be view at: https://player-eric.github.io/2020/02/20/nmtvis-attention/
 
-For example code and data, please refer to: https://github.com/player-eric/NMT-Visualizer/tree/master/example
+
+
+
 
 Visualization Views
 ----------------------
@@ -143,3 +150,94 @@ Note that at least one type of attention weights should be passed in.
                                     - key 'layer_x-head_y': the attention matrix of shape(M,N), from head y in layer x  
    =============================  ====================================
 
+**Embedding Visualization**
+====================================
+Module **nmtvis.EmbeddingVisualizer** is designed for visualizing word embeddings(or other high-dimensional vectors like encoded sentence). 
+After preparing the words and corresponding embedding vectors, the user can simply pass them into the method *visualize_embedding_pca()* or *visualize_embedding_tsne()* and get the visualization result rendered in web. The basic workflow of the methods is to first conduct dimensionality reduction(PCA or TSNE), which transforms the originial vector to a 2-D or 3-D vector, and then start a local server for web visualization.
+
+   .. figure:: embedding_pic.gif
+         :scale: 100 %
+
+         *Web Visualization*
+
+See this demo with example data: https://player-eric.github.io/embedding_demo/
+
+nmtvis.EmbeddingVisualizer.visualize_embedding_pca(*\*\*kwargs*)
+----------------------------------------------------------------------------------------
+.. table::
+   :widths: grid
+   :align: left
+
+   +------------------+--------------------------------------------------------------------------------+
+   |  Parameter       |          Detail                                                                |
+   +==================+================================================================================+
+   | embeddings       |a list of embedding vectors for words                                           |
+   +------------------+--------------------------------------------------------------------------------+
+   | vocab            |a list of words, the order of which corresponds to the order of                 |
+   |                  |embedding vectors                                                               |
+   +------------------+--------------------------------------------------------------------------------+
+   | n_dim            |the expected dimension of vectors to visualize                                  |
+   |                  |                                                                                |
+   +------------------+--------------------------------------------------------------------------------+
+   | n_neighbor       |number of nearest neighbors to record(will be shown                             |
+   |                  |in the visualizaion)                                                            |
+   |                  |                                                                                |
+   +------------------+--------------------------------------------------------------------------------+
+   |copy              |configuration for the PCA process as detailed in sklearn's documentary          |
+   |                  |                                                                                |
+   |whiten            |https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html|
+   |                  |                                                                                |
+   |svd_solver        |For a quick start, the default values would suffice                             |
+   |                  |                                                                                |
+   |totol             |                                                                                |
+   |                  |                                                                                |
+   |iterated_power    |                                                                                |
+   |                  |                                                                                |
+   |random_state      |                                                                                |
+   +------------------+--------------------------------------------------------------------------------+
+
+nmtvis.EmbeddingVisualizer.visualize_embedding_tsne(*\*\*kwargs*)
+----------------------------------------------------------------------------------------
+.. table::
+   :widths: grid
+   :align: left
+
+   +------------------+-----------------------------------------------------------------------------+
+   |  Parameter       |          Detail                                                             |
+   +==================+=============================================================================+
+   | embeddings       |a list of embedding vectors for words                                        |
+   +------------------+-----------------------------------------------------------------------------+
+   | vocab            |a list of words, the order of which corresponds to the order of              |
+   |                  |embedding vectors                                                            |
+   +------------------+-----------------------------------------------------------------------------+
+   | n_dim            |the expected dimension of vectors to visualize                               |
+   |                  |                                                                             |
+   +------------------+-----------------------------------------------------------------------------+
+   | n_neighbor       |number of nearest neighbors to record(will be shown                          |
+   |                  |in the visualizaion)                                                         |
+   |                  |                                                                             |
+   +------------------+-----------------------------------------------------------------------------+
+   |perplexity        |configuration for the TSNE process as detailed in sklearn's documentary      |
+   |                  |                                                                             |
+   |early_exaggeration|https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html |
+   |                  |                                                                             |
+   |learning_rate     |For a quick start, the default values would suffice                          |
+   |                  |                                                                             |
+   |n_iter            |                                                                             |
+   |                  |                                                                             |
+   |min_grad_norm     |                                                                             |
+   |                  |                                                                             |
+   |metric            |                                                                             |
+   |                  |                                                                             |
+   |init              |                                                                             |
+   |                  |                                                                             |
+   |verbose           |                                                                             |
+   |                  |                                                                             |
+   |random_state      |                                                                             |
+   |                  |                                                                             |
+   |method            |                                                                             |
+   |                  |                                                                             |
+   |angle             |                                                                             |
+   |                  |                                                                             |
+   |n_jobs            |                                                                             |
+   +------------------+-----------------------------------------------------------------------------+
