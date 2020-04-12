@@ -16,6 +16,7 @@ Use pip to install **nmtvis**::
 
 - Python3
 - Numpy
+- sklearn
 
 ## Features
 
@@ -26,6 +27,8 @@ Use pip to install **nmtvis**::
 
 - Source Code: https://github.com/player-eric/NMT-Visualizer
 - Documentation: https://nmtvis.readthedocs.io/en/latest
+- An article about the attention-visualization feature: http://player-eric.com/2020/02/20/nmtvis-attention/
+- Attention mechanism visualization demo with example data: https://player-eric.github.io/attention_demo/
 
 ## License
 
