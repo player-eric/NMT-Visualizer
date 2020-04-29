@@ -16,7 +16,7 @@ Use pip to install **nmtvis**::
 
 - Python3
 - Numpy
-- sklearn
+- Scikit-learn
 
 ## Features
 
