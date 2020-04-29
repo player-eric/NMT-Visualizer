@@ -1,9 +1,11 @@
+# -*- coding: UTF-8 -*-
+
 import numpy as np
 from nmtvis.BeamSearchVisualizer import visualize_beam_search_decode
-with open("../data/beam_source_sentences",'r') as f:
+with open("../data/beam_source_sentences",'r',encoding="utf-8") as f:
     source=f.read().split('\n')[:-1]
 
-with open("../data/beam_target_sentences",'r') as f:
+with open("../data/beam_target_sentences",'r',encoding="utf-8") as f:
     target=f.read().split('\n')[:-1]
 
 parent=np.load("../data/parent.npy")
