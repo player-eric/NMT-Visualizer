@@ -21,7 +21,8 @@ Use pip to install **nmtvis**::
 ## Features
 
 - Visualize attention weights in attention-based NMT models
-- Other features to be developed
+- Visualize high-dimensional vectors(e.g. word embeddings)
+- Visualize the beam search decoding process
 
 ## Links
 
@@ -29,7 +30,11 @@ Use pip to install **nmtvis**::
 - Documentation: https://nmtvis.readthedocs.io/en/latest
 - An article about the attention-visualization feature: http://player-eric.com/2020/02/20/nmtvis-attention/
 - Attention mechanism visualization demo with example data: https://player-eric.github.io/attention_demo/
+- Word embedding visualization demo with example data: https://player-eric.github.io/embedding_demo/
+- Beam search decoding visualization demo with example data: https://player-eric.github.io/beam_search_demo/
 
+
+- 
 ## License
 
 The project is licensed under the MIT license.
