@@ -1,0 +1,63 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". exwd exwd mdwd mdwd mode mode . left left id right right . step step reset reset trans trans save" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "main main main main main main main main main main main main main main main main main main main main main" "example example example example example . s src src src src src src src src src src src src src ." "example example example example example . t tar tar tar tar tar tar tar tar tar tar tar tar tar .";
+}
+
+.left {
+  grid-area: left;
+}
+
+.id {
+  grid-area: id;
+}
+
+.right {
+  grid-area: right;
+}
+
+.mode {
+  grid-area: mode;
+}
+
+.mdwd {
+  grid-area: mdwd;
+}
+
+.step {
+  grid-area: step;
+}
+
+.reset {
+  grid-area: reset;
+}
+
+.trans {
+  grid-area: trans;
+}
+
+.main {
+  grid-area: main;
+}
+
+.example {
+  grid-area: example;
+}
+
+.t {
+  grid-area: t;
+}
+
+.s {
+  grid-area: s;
+}
+
+.tar {
+  grid-area: tar;
+}
+
+.src {
+  grid-area: src;
+}

@@ -158,7 +158,7 @@ After preparing the words and corresponding embedding vectors, the user can simp
    .. figure:: embedding_pic.gif
          :scale: 100 %
 
-         *Web Visualization*
+         *Word Embedding Visualization*
 
 See this demo with example data: https://player-eric.github.io/embedding_demo/
 
@@ -171,19 +171,19 @@ nmtvis.EmbeddingVisualizer.visualize_embedding_pca(*\*\*kwargs*)
    +------------------+--------------------------------------------------------------------------------+
    |  Parameter       |          Detail                                                                |
    +==================+================================================================================+
-   | embeddings       |a list of embedding vectors for words                                           |
+   | embeddings       |A python list of embedding vectors for words                                    |
    +------------------+--------------------------------------------------------------------------------+
-   | vocab            |a list of words, the order of which corresponds to the order of                 |
+   | vocab            |A python list of words, its order corresponds to the order of                   |
    |                  |embedding vectors                                                               |
    +------------------+--------------------------------------------------------------------------------+
-   | n_dim            |the expected dimension of vectors to visualize                                  |
+   | n_dim            |The expected number of dimensions to visualize                                  |
    |                  |                                                                                |
    +------------------+--------------------------------------------------------------------------------+
-   | n_neighbor       |number of nearest neighbors to record(will be shown                             |
+   | n_neighbor       |Number of nearest neighbors to record(will be shown                             |
    |                  |in the visualizaion)                                                            |
    |                  |                                                                                |
    +------------------+--------------------------------------------------------------------------------+
-   |copy              |configuration for the PCA process as detailed in sklearn's documentary          |
+   |copy              |Configuration for the PCA process as detailed in sklearn's documentary          |
    |                  |                                                                                |
    |whiten            |https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html|
    |                  |                                                                                |
@@ -205,12 +205,12 @@ nmtvis.EmbeddingVisualizer.visualize_embedding_tsne(*\*\*kwargs*)
    +------------------+-----------------------------------------------------------------------------+
    |  Parameter       |          Detail                                                             |
    +==================+=============================================================================+
-   | embeddings       |a list of embedding vectors for words                                        |
+   | embeddings       |A python list of embedding vectors for words                                 |
    +------------------+-----------------------------------------------------------------------------+
-   | vocab            |a list of words, the order of which corresponds to the order of              |
+   | vocab            |A python list of words, its order corresponds to the order of                |
    |                  |embedding vectors                                                            |
    +------------------+-----------------------------------------------------------------------------+
-   | n_dim            |the expected dimension of vectors to visualize                               |
+   | n_dim            |The expected number of dimensions to visualize                               |
    |                  |                                                                             |
    +------------------+-----------------------------------------------------------------------------+
    | n_neighbor       |number of nearest neighbors to record(will be shown                          |
@@ -241,3 +241,104 @@ nmtvis.EmbeddingVisualizer.visualize_embedding_tsne(*\*\*kwargs*)
    |                  |                                                                             |
    |n_jobs            |                                                                             |
    +------------------+-----------------------------------------------------------------------------+
+
+**Beam Search Decoding Visualization**
+============================================================
+Module **nmtvis.BeamSearchVisualizer** targets at visualizing the beam search decoding process by drawing the search tree.
+
+By saving the beam search decoder's state at every step and then calling the *visualize_beam_search_decode* method, the user can get an interactive search tree graph rendered in a Web.
+
+   .. figure:: beam_pic.gif
+         :scale: 100 %
+
+         *Beam Search Decoding Visualization*
+
+A demo with example data: https://player-eric.github.io/beam_demo/
+
+
+nmtvis.BeamSearchVisualizer.visualize_visualize_beam_search_decode(*\*\*kwargs*)
+----------------------------------------------------------------------------------------
+.. table::
+   :widths: grid
+   :align: left
+
+   +------------------+-----------------------------------------------------------------------------+
+   |  Parameter       |          Detail                                                             |
+   +==================+=============================================================================+
+   |source_sentences  |A python list consisting translated sentences                                |
+   +------------------+-----------------------------------------------------------------------------+
+   |target_sentences  |A python list consisting translation results                                 |
+   +------------------+-----------------------------------------------------------------------------+
+   |predicts          |An numpy array of shape [num_sentences,num_steps,beam_width]                 |
+   |                  |                                                                             |
+   |                  |Words predicted by the beam search decoder at every step                     |
+   +------------------+-----------------------------------------------------------------------------+
+   |parents           |An numpy array of shape [num_sentences,num_steps,beam_width]                 |
+   |                  |                                                                             |
+   |                  |Indexes of beams which the predictions at next step come from                |
+   +------------------+-----------------------------------------------------------------------------+
+   |log_probs         |An numpy array of shape [num_sentences,num_steps,beam_width]                 |
+   |                  |                                                                             |
+   |                  |Log probabilities of giving every predicted words                            |
+   +------------------+-----------------------------------------------------------------------------+
+   |beam_width        |A python int                                                                 |
+   |                  |                                                                             |
+   |                  |The size of the beams                                                        |
+   +------------------+-----------------------------------------------------------------------------+
+
+As the above parameters may be a little bit complicated, here is a simple example:
+
+Source sentence: 我 爱 你
+
+Target sentence: I love you
+
+   .. figure:: example_decode.png
+         :scale: 50 %
+
+
+To visualize the above decoding process, parameters passed in should be:
+
+      source_sentence:["我爱你"]
+
+      target_sentence:["I love you"]
+
+      predicts:
+            [
+                  [
+                        ["I","my","me"],
+
+                        ["love","like","like"],
+
+                        ["you","you","you"],
+
+                        ["</s>","</s>","</s>"]
+                  ]
+            ]
+
+      parents:
+            [
+                  [
+                        [0,0,0],
+
+                        [0,0,2],
+
+                        [0,1,2],
+
+                        [0,1,2]
+                  ]
+            ]
+
+      log_probs:
+            [
+                  [
+                        [-0.1,-1.3,-0.3],
+
+                        [-0.2,-0.7,-0.8],
+
+                        [-0.1,-0.1,-0.1],
+
+                        [-0.1,-0.1,-0.1]
+                  ]
+            ]
+
+      beam_width:3

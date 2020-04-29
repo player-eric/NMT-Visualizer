@@ -13136,7 +13136,7 @@ function make_layer_lookup_table(tree, total_layer) {
   } else {
     view_mode = \"NORTH\";
   }
-  initialize_tree(view_mode);
+  initialize_tree();
 }
 
 function change_expand_mode(mode) {
@@ -13321,7 +13321,7 @@ break;case\"opacity\":k.gradient&&!k[b](\"stroke-opacity\")&&q(i,{\"stroke-opaci
       </div>
       <div class=\"mode\">
         <select
-          id=\"view_mode\"
+          id=\"expand_mode\"
           style=\"position: absolute; top: 2.2%; left: 25%; width: 12%;\"
           onchange=\"change_expand_mode(this.value)\"
         >
@@ -13406,9 +13406,9 @@ break;case\"opacity\":k.gradient&&!k[b](\"stroke-opacity\")&&q(i,{\"stroke-opaci
       </div>
       <div class=\"trans\">
         <select
-          id=\"expand_mode\"
+          id=\"view_mode\"
           style=\"position: absolute; top: 2.2%; left: 11%; width: 5%;\"
-          onchange=\"change_expand_mode(this.value)\"
+          onchange=\"change_view_mode(this.value)\"
         >
           <option value=\"vertical\">Vertical</option>
           <option value=\"horizontal\">Horizontal</option>
@@ -13479,7 +13479,7 @@ break;case\"opacity\":k.gradient&&!k[b](\"stroke-opacity\")&&q(i,{\"stroke-opaci
         resize();
       });
       resize();
-      initialize_tree(view_mode);
+      initialize_tree();
     </script>
   </body>
 </html>

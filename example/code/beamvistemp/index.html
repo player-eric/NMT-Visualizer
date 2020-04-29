@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Beam Search Decoder Visualization</title>
+    <link rel="stylesheet" href="css/Treant.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link href="css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/perfect-scrollbar.js"></script>
+    <script src="js/raphael.js"></script>
+    <script src="js/Treant.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="./js/d3.min.js"></script>
+    <script src="js/dom-to-image.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <link href="css/fontawesome.css" rel="stylesheet" />
+    <link href="css/solid.css" rel="stylesheet" />
+    <link href="css/layout.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="left">
+        <a
+          href="#"
+          class="previous"
+          style="
+            position: absolute;
+            top: 1%;
+            left: 39.5%;
+            background-color: #20d2a6;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+          "
+          onclick="decrease_index()"
+          >&laquo; Previous</a
+        >
+      </div>
+      <div class="id">
+        <b id="index" style="position: absolute; top: 1.2%; font-size: x-large;"
+          >0</b
+        >
+      </div>
+      <div class="right">
+        <a
+          href="#"
+          class="next"
+          style="
+            position: absolute;
+            top: 1%;
+            left: 50%;
+            background-color: #20d2a6;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+          "
+          onclick="increase_index()"
+          >Next &raquo;</a
+        >
+      </div>
+      <div class="mode">
+        <select
+          id="view_mode"
+          style="position: absolute; top: 2.2%; left: 25%; width: 12%;"
+          onchange="change_expand_mode(this.value)"
+        >
+          <option value="step">Step by Step</option>
+          <option value="whole">Expand the Whole Tree</option>
+        </select>
+      </div>
+      <div class="mdwd">
+        <b style="position: absolute; top: 2%; left: 5%;">View Mode</b>
+      </div>
+      <div class="step">
+        <a
+          id="step"
+          href="#"
+          style="
+            position: absolute;
+            top: 1%;
+            left: 63%;
+            background-color: #20d2a6;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+          "
+          onclick="proceed()"
+          >Step&nbsp<i class="fas fa-shoe-prints"></i
+        ></a>
+      </div>
+      <div class="reset">
+        <a
+          href="#"
+          style="
+            position: absolute;
+            top: 1%;
+            left: 82%;
+            background-color: #20d2a6;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+          "
+          onclick="reset()"
+          >Reset&nbsp<i class="fas fa-redo-alt"></i
+        ></a>
+      </div>
+      <div class="save">
+        <a
+          href="#"
+          style="
+            position: absolute;
+            top: 1%;
+            left: 90%;
+            background-color: #20d2a6;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+          "
+          onclick="save()"
+          >Save&nbsp<i class="fas fa-camera"></i
+        ></a>
+      </div>
+      <div class="exwd">
+        <b style="position: absolute; top: 2%; left: 18%;">Expand Mode</b>
+      </div>
+      <div class="whole">
+        <a
+          id="expand_all"
+          style="
+            position: absolute;
+            top: 1%;
+            left: 70%;
+            background-color: grey;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+          "
+          onclick="expand_all()"
+          >Expand All&nbsp<i class="fas fa-tree"></i
+        ></a>
+      </div>
+      <div class="trans">
+        <select
+          id="expand_mode"
+          style="position: absolute; top: 2.2%; left: 11%; width: 5%;"
+          onchange="change_expand_mode(this.value)"
+        >
+          <option value="vertical">Vertical</option>
+          <option value="horizontal">Horizontal</option>
+        </select>
+      </div>
+      <div class="main">
+        <div class="chart" id="main_graph"></div>
+      </div>
+      <div class="example">
+        <img id="example" src="image/example.jpg" alt="Tree Node Example" />
+      </div>
+      <div class="t">
+        <b
+          id="t"
+          style="position: absolute; top: 92%; left: 18%; font-size: x-large;"
+          >Target Sentence:</b
+        >
+      </div>
+      <div class="s">
+        <b
+          id="s"
+          style="position: absolute; top: 86%; left: 18%; font-size: x-large;"
+          >Source Sentence:</b
+        >
+      </div>
+      <div class="tar">
+        <b
+          id="target_sentence"
+          style="
+            position: absolute;
+            top: 92%;
+            left: 31%;
+            width: 65%;
+            font-size: x-large;
+            overflow-x: auto;
+            background-color: #d4d6e0;
+          "
+        ></b>
+      </div>
+      <div class="src">
+        <b
+          id="source_sentence"
+          style="
+            position: absolute;
+            top: 86%;
+            left: 31%;
+            width: 65%;
+            font-size: x-large;
+            overflow-x: auto;
+            background-color: #d4d6e0;
+          "
+        ></b>
+      </div>
+    </div>
+
+    <script>
+      var json_dir = "history.json";
+      var index = 0;
+      var total_translation;
+      var view_mode = "NORTH";
+
+      var beam_width;
+      var total_layer;
+      var is_whole = false;
+      var current_layer = 1;
+      var current_node = 0;
+      window.addEventListener("resize", function (event) {
+        resize();
+      });
+      resize();
+      initialize_tree(view_mode);
+    </script>
+  </body>
+</html>
