@@ -32,9 +32,7 @@ Use pip to install **nmtvis**::
 - Attention mechanism visualization demo with example data: https://player-eric.github.io/attention_demo/
 - Word embedding visualization demo with example data: https://player-eric.github.io/embedding_demo/
 - Beam search decoding visualization demo with example data: https://player-eric.github.io/beam_search_demo/
-
-
-- 
+ 
 ## License
 
 The project is licensed under the MIT license.
