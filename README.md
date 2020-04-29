@@ -31,7 +31,10 @@ Use pip to install **nmtvis**::
 - An article about the attention-visualization feature: http://player-eric.com/2020/02/20/nmtvis-attention/
 - Attention mechanism visualization demo with example data: https://player-eric.github.io/attention_demo/
 - Word embedding visualization demo with example data: https://player-eric.github.io/embedding_demo/
+<<<<<<< HEAD
 - Beam search decoding visualization demo with example data: https://player-eric.github.io/beam_search_demo/
+=======
+>>>>>>> 4f65578a091de6ea9f932d4e11deaf49cd411197
 
 
 - 
