@@ -24,6 +24,7 @@ Features
 
 - Visualize attention weights in attention-based NMT models.
 - Visualize high-dimensional word embeddings in 3D or 2D ways.
+- Visualize beam search decoding process.
 
 
 Links
