@@ -29,9 +29,9 @@ Use pip to install **nmtvis**::
 - Source Code: https://github.com/player-eric/NMT-Visualizer
 - Documentation: https://nmtvis.readthedocs.io/en/latest
 - An article about the attention-visualization feature: http://player-eric.com/2020/02/20/nmtvis-attention/
-- Attention mechanism visualization demo with example data: https://player-eric.github.io/attention_demo/
-- Word embedding visualization demo with example data: https://player-eric.github.io/embedding_demo/
-- Beam search decoding visualization demo with example data: https://player-eric.github.io/beam_demo/
+- Attention mechanism visualization demo with example data: https://player-eric.com/resources/nmtvis-demos/attention_demo
+- Word embedding visualization demo with example data: https://player-eric.com/resources/nmtvis-demos/embedding_demo
+- Beam search decoding visualization demo with example data: https://player-eric.com/resources/nmtvis-demos/beam_demo
  
 ## License
 
